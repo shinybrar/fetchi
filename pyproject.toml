@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fetchi"
-version = "0.2.0"
+version = "0.3.0"
 description = "HTTP Backend to Fetch Data"
 authors = ["Shiny Brar <charanjotbrar@gmail.com>"]
 license = "MIT"

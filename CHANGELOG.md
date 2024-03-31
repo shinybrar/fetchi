@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/shinybrar/fetchi/compare/v0.2.0...v0.3.0) (2024-03-31)
+
+
+### Features
+
+* **server-testing:** added docs to use to perform server testing ([6eecb7e](https://github.com/shinybrar/fetchi/commit/6eecb7e01206d0cee125f819fc443daa399bae40))
+* **testing:** added steps to check the testing of the deployed server using curl ([e6918a4](https://github.com/shinybrar/fetchi/commit/e6918a4d54c3e9c99693bb6fd2eaaf203bab1a8f))
+
+
+### Bug Fixes
+
+* **ci:** fixed testing ([60b1d33](https://github.com/shinybrar/fetchi/commit/60b1d3329e31f61d36f97c7569f2e9085b7a27eb))
+
 ## [0.2.0](https://github.com/shinybrar/fetchi/compare/v0.1.0...v0.2.0) (2024-03-31)
 
 
