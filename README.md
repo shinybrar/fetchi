@@ -42,8 +42,10 @@ In order to start the server, you can use the `sanic` command from your terminal
 
 ```bash
 cd /path/to/fetchi
-sanic fetchi.server:app
+sanic fetchi.server:app --host 0.0.0.0 --port 8000
 ```
+
+You can also change the port number and the host address to run the server on a different port or IP address.
 
 ### Docker Compose
 
@@ -99,3 +101,22 @@ poetry run pytest -v
 ```
 
 Currently, we have tests to check the `ping` and `fetch` endpoints already implemented.
+
+## Testing Deployed Server
+
+Even though we have included offline tests for the server to run locally and during CI/CD, you can also test the deployed server using various tools like `curl`, `httpie`, `postman`, `insomnia` etc. While most of these tools accelerate deployment testing for teams, the simplest way to test the server is using `curl` and validating if the `data.csv` file is being served correctly and matches the expected content.
+
+Assuming that the server is running on `http://0.0.0.0:8000`, you can run the following command to test the server:
+
+```bash
+curl -O http://0.0.0.0:8000/v1/fetch/data.csv
+```
+
+This will download the `data.csv` file from the server and save it in the current directory. You can then compare the contents of the file with the expected content. To compare the contents, the simplest way is to compare the `md5` hash of the file with the expected hash. You can run the following command to get the `md5` hash of the file:
+
+```bash
+md5 data.csv
+MD5 (data.csv) = 66e1f14667b77ef1b358bb8dedbd3990
+```
+
+If the contents of the checksum are same, the server is working as expected.
