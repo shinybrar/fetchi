@@ -9,6 +9,8 @@ from sanic.request import Request
 from sanic.response import HTTPResponse, file, json
 from sanic_ext import openapi
 
+Sanic.start_method = "fork"
+
 # Create the Sanic Web Application
 app = Sanic("fetchi")
 
@@ -17,6 +19,7 @@ app.ctx.basedir = Path("./fetchi/static/")
 
 # Enable the health check endpoint
 app.config.HEALTH = True
+app.config.HEALTH_ENDPOINT = True
 
 # Enable the Directory view for the static files
 app.static(
