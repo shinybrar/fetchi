@@ -61,7 +61,7 @@ async def fetch(request: Request, filename: str) -> HTTPResponse:  # type: ignor
     try:
         filepath: Path = app.ctx.basedir / filename
         # Check if the filepath exists and is a file
-        if not filepath.exists() and filepath.is_file():
+        if not filepath.exists() and not filepath.is_file():
             return json({"error": "file not found"}, status=404)
         # Check if we can read the file
         if not (filepath.stat().st_mode & stat.S_IRUSR):
@@ -69,5 +69,5 @@ async def fetch(request: Request, filename: str) -> HTTPResponse:  # type: ignor
         # Serve the static file
         return await file(filepath)
     except Exception as error:
-        logger.error(f"Error fetching file: {error}")
+        logger.error(f"unknown server error: {error}")
         return json({"error": f"{str(error)}"}, status=500)
