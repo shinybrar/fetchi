@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/shinybrar/fetchi/compare/v0.1.0...v0.2.0) (2024-03-31)
+
+
+### Features
+
+* **release:** fetchi ([e1834d4](https://github.com/shinybrar/fetchi/commit/e1834d470cf66a44dbe6cc6f72cab4a4d46d8dcf))
+
+
+### Documentation
+
+* **readme:** updated readme with screenshots ([de36e02](https://github.com/shinybrar/fetchi/commit/de36e02371ba3427031859b58d87a71c38aeb57b))
+* **readme:** updated with full feature list ([fe41ec8](https://github.com/shinybrar/fetchi/commit/fe41ec84b89cc4bd22365dbc2ad591f7811a4b29))
+
 ## 0.1.0 (2024-03-31)
 
 
