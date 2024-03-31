@@ -61,9 +61,17 @@ This will build the docker and start the server on port `8000`. You can change t
 Once the server is running, you can access the following features,
 
 - [x] [Download the contents of `data.csv`](http://0.0.0.0:8000/v1/fetch/data.csv)
+      <img width="972" alt="image" src="https://github.com/shinybrar/fetchi/assets/4196481/8f783e72-1b3e-4646-a338-e3c0c2d97f1a">
+
 - [x] [Directory Listing](http://0.0.0.0:8000/static/)
+      <img width="972" alt="image" src="https://github.com/shinybrar/fetchi/assets/4196481/4bb48eb6-17ca-4f1a-9c47-1ce14c293fc6">
+      
 - [x] [System Health Check (GET /__health__)](http://0.0.0.0:8000/__health__)
-- [x] [Server Ping (GET /ping)]  [http://0.0.0.0:8000/ping](http://0.0.0.0:8000/ping)
+      <img width="974" alt="image" src="https://github.com/shinybrar/fetchi/assets/4196481/5eb95276-3aee-458d-ad2c-178159285d9f">
+      
+- [x] [Server Ping (GET /ping)](http://0.0.0.0:8000/ping)
+    <img width="978" alt="image" src="https://github.com/shinybrar/fetchi/assets/4196481/ba4e8a30-1fb7-446b-b7cb-971c345634e2">
+    
 - [x] HTTP Endpoint Documentation
   - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
   - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
