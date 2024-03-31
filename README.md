@@ -1,4 +1,4 @@
-# Fetchi | `フェッチ`
+# Fetchi
 
 Fetchi is a simple and lightweight HTTP Web Server written in Python to serve static files.
 
@@ -76,6 +76,7 @@ Once the server is running, you can access the following features,
 - Implement fast Caching & Cache-Control
 - Implement GZIP Compression
 - Implement Authentication, e.g. Basic Auth, JWT, OAuth2 etc.
+- Proxy Support
 - Add more tests for the server
 
 ### Developer Setup
@@ -83,6 +84,7 @@ Once the server is running, you can access the following features,
 In order to setup the development environment, you need to have [Python 3.9+](https://www.python.org/downloads/release/python-3110/) or higher installed on your system. Additionally, this project uses [Poetry](https://python-poetry.org/) for dependency management, packaging, publishing and management of local development environments. To install `poetry` you find the instructions [here](https://python-poetry.org/docs/#installation).
 
 Once you have `poetry` installed, you can clone the repository and install the dependencies using the following commands:
+
 
 ```bash
 git clone https://github.com/shinybrar/fetchi.git
