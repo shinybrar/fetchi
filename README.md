@@ -6,12 +6,6 @@ Fetchi is a simple and lightweight HTTP Web Server written in Python to serve st
 
 **Note:** Fetchi requires Python 3.9+ to run. Make sure you have the correct version of Python installed on your system.
 
-### From `pip`
-
-```bash
-pip install --user fetchi
-```
-
 ### From `zip` file
 
 Download the `fetchi.zip` file from the [latest release](https://github.com/shinybrar/fetchi/releases). Extract the contents of the zip file and run the following command to install the package.
@@ -21,7 +15,17 @@ Download the `fetchi.zip` file from the [latest release](https://github.com/shin
 $ unzip fetchi.zip
 ```
 
-Install the package using `pip`:
+### From `git` repository
+
+Alternatively, you can also clone the respository using the `git`,
+
+```bash
+git clone https://github.com/shinybrar/fetchi.git
+```
+
+### Install the package
+
+To install the package using `pip`, you can run the following command:
 
 ```bash
 cd fetchi
@@ -30,9 +34,11 @@ pip install .
 
 ## Starting the Server
 
+Once you have installed the package, you can start the server using one of the following methods,
+
 ### Command Line Interface
 
-In order to start the server, you can use the `sanic` command. After installation the package dependencies, the following command will start the server on port `8000` and serve the files from the `./fetchi/static/` folder.
+In order to start the server, you can use the `sanic` command from your terminal. After installation the package dependencies, the following command will start the server on port `8000` and serve the files from the `./fetchi/static/` folder.
 
 ```bash
 cd /path/to/fetchi
@@ -41,25 +47,26 @@ sanic fetchi.server:app
 
 ### Docker Compose
 
-If you have `Docker for Desktop` installed on your system, you can use the `docker compose` to start the server.
+If you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine, you can also use the `docker compose` to build and run the server in a containerized environment. The following command will start the server on port `8000` and serve the files from the `./fetchi/static/` folder.
 
 ```bash
 cd /path/to/fetchi
 docker-compose up
 ```
 
-This will build the docker and start the server on port `8000`.
+This will build the docker and start the server on port `8000`. You can change the port mapping in the `docker-compose.yml` file if you want to run the server on a different port
 
 ### Features
 
-- [x] Serve Static Files
-- [x] Directory Listing: [http://0.0.0.0:8000/static/](http://0.0.0.0:8000/static/)
-- [x] Health Check (GET/__health__) [http://0.0.0.0:8000/__health__](http://0.0.0.0:8000/__health__)
-- [x] Server Ping (GET /ping) [http://0.0.0.0:8000/ping](http://0.0.0.0:8000/ping)
+Once the server is running, you can access the following features,
+
+- [x] [Download the contents of `data.csv`](http://0.0.0.0:8000/v1/fetch/data.csv)
+- [x] [Directory Listing](http://0.0.0.0:8000/static/)
+- [x] [System Health Check (GET /__health__)](http://0.0.0.0:8000/__health__)
+- [x] [Server Ping (GET /ping)]  [http://0.0.0.0:8000/ping](http://0.0.0.0:8000/ping)
 - [x] HTTP Endpoint Documentation
   - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
   - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
-- [x] Docker Support
 
 #### Future Work
 
