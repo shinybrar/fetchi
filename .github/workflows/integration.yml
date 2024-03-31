@@ -22,8 +22,11 @@ jobs:
       with:
         python-version: 3.11
     -
+      # Install the extra dev dependencies
       name: Install dependencies
-      run: pip install .
+      run: |
+        pip install poetry
+        poetry install --with dev
     -
       name: Run tests
-      run: pytest -v
+      run: poetry run pytest -v
