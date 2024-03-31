@@ -1,20 +1,34 @@
-from sanic import Sanic
-from sanic_ext import openapi
-from sanic.response import HTTPResponse, json
-from sanic.request import Request
-from sanic.log import logger
+"""Fetchi Server Module."""
 
+import stat
+from pathlib import Path
+
+from sanic import Sanic
+from sanic.log import logger
+from sanic.request import Request
+from sanic.response import HTTPResponse, file, json
+from sanic_ext import openapi
+
+# Create the Sanic Web Application
 app = Sanic("fetchi")
+
+# Set the base directory from where the static files will be served
+app.ctx.basedir = Path("./fetchi/static/")
+
+# Enable the health check endpoint
 app.config.HEALTH = True
-app.static("/static/", "./fetchi/static/", strict_slashes=False, directory_view=True)  # type: ignore
+
+# Enable the Directory view for the static files
+app.static(
+    "/static/", str(app.ctx.basedir), strict_slashes=True, directory_view=True
+)  # type: ignore
 
 
 @app.get("/ping")
 @openapi.summary("Ping")
 @openapi.description("Send a ping request to the server")
 async def ping(request: Request) -> HTTPResponse:  # type: ignore
-    """
-    Send a ping request to the server
+    """Send a ping request to the server.
 
     Args:
         request (Request): Sanic request object
@@ -30,8 +44,7 @@ async def ping(request: Request) -> HTTPResponse:  # type: ignore
 @openapi.summary("Fetch")
 @openapi.description("Fetch a file from the server")
 async def fetch(request: Request, filename: str) -> HTTPResponse:  # type: ignore
-    """
-    Fetch a file from the server
+    """Fetch a file from the server.
 
     Args:
         request (Request): Sanic request object
@@ -41,4 +54,17 @@ async def fetch(request: Request, filename: str) -> HTTPResponse:  # type: ignor
         HTTPResponse: Sanic HTTPResponse object
     """
     logger.info(f"fetch request received from {request.ip} for {filename}")
-    return json({"filename": filename})
+
+    try:
+        filepath: Path = app.ctx.basedir / filename
+        # Check if the filepath exists and is a file
+        if not filepath.exists() and filepath.is_file():
+            return json({"error": "file not found"}, status=404)
+        # Check if we can read the file
+        if not (filepath.stat().st_mode & stat.S_IRUSR):
+            return json({"error": "file not readable"}, status=403)
+        # Serve the static file
+        return await file(filepath)
+    except Exception as error:
+        logger.error(f"Error fetching file: {error}")
+        return json({"error": f"{str(error)}"}, status=500)
