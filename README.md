@@ -1,3 +1,5 @@
+[![Continous Deployment](https://github.com/shinybrar/fetchi/actions/workflows/deployment.yml/badge.svg)](https://github.com/shinybrar/fetchi/actions/workflows/deployment.yml) [![Continous Integration](https://github.com/shinybrar/fetchi/actions/workflows/integration.yml/badge.svg)](https://github.com/shinybrar/fetchi/actions/workflows/integration.yml)
+
 # Fetchi
 
 Fetchi is a simple and lightweight HTTP Web Server written in Python to serve static files.
@@ -65,7 +67,7 @@ Once the server is running, you can access the following features,
 - [x] [Download the contents of `data.csv`](http://0.0.0.0:8000/v1/fetch/data.csv)
 - [x] [Directory Listing](http://0.0.0.0:8000/static/)
 - [x] [System Health Check (GET /__health__)](http://0.0.0.0:8000/__health__)
-- [x] [Server Ping (GET /ping)]  [http://0.0.0.0:8000/ping](http://0.0.0.0:8000/ping)
+- [x] [Server Ping (GET /ping)](http://0.0.0.0:8000/ping)
 - [x] HTTP Endpoint Documentation
   - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
   - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
