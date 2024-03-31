@@ -1,17 +1,6 @@
-# Fetchi `フェッチ`
+# Fetchi | `フェッチ`
 
 Fetchi is a simple and lightweight HTTP Web Server written in Python to serve static files.
-
-## Features
-
-- [x] Serve Static Files
-- [x] Directory Listing: [http://0.0.0.0:8000/static/](http://0.0.0.0:8000/static/)
-- [x] Health Check (GET/__health__) [http://0.0.0.0:8000/__health__](http://0.0.0.0:8000/__health__)
-- [x] Server Ping (GET /ping) [http://0.0.0.0:8000/ping](http://0.0.0.0:8000/ping)
-- [x] HTTP Endpoint Documentation
-  - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
-  - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
-- [x] Docker Support
 
 ## Installation
 
@@ -61,10 +50,18 @@ docker-compose up
 
 This will build the docker and start the server on port `8000`.
 
-## Technical Details
+### Features
 
+- [x] Serve Static Files
+- [x] Directory Listing: [http://0.0.0.0:8000/static/](http://0.0.0.0:8000/static/)
+- [x] Health Check (GET/__health__) [http://0.0.0.0:8000/__health__](http://0.0.0.0:8000/__health__)
+- [x] Server Ping (GET /ping) [http://0.0.0.0:8000/ping](http://0.0.0.0:8000/ping)
+- [x] HTTP Endpoint Documentation
+  - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
+  - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
+- [x] Docker Support
 
-### Future Features
+#### Future Work
 
 - Harden the filename parameters checks to avoid directory traversal attacks by asserting that the filename is within the base directory.
 - CORS Support
@@ -76,3 +73,17 @@ This will build the docker and start the server on port `8000`.
 ### Developer Setup
 
 In order to setup the development environment, you need to have [Python 3.9+](https://www.python.org/downloads/release/python-3110/) or higher installed on your system. Additionally, this project uses [Poetry](https://python-poetry.org/) for dependency management, packaging, publishing and management of local development environments. To install `poetry` you find the instructions [here](https://python-poetry.org/docs/#installation).
+
+Once you have `poetry` installed, you can clone the repository and install the dependencies using the following commands:
+
+```bash
+git clone https://github.com/shinybrar/fetchi.git
+cd fetchi
+poetry install --with dev
+```
+
+This will install the dependencies required for development and testing. You can run the tests using the following command:
+
+```bash
+poetry run pytest
+```
