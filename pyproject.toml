@@ -7,9 +7,12 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 sanic = {version = "^23.12.1", extras = ["ext"]}
 
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.0"
 
 [build-system]
 requires = ["poetry-core"]
