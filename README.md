@@ -55,12 +55,12 @@ If you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) in
 
 ```bash
 cd /path/to/fetchi
-docker-compose up
+docker compose up
 ```
 
 This will build the docker and start the server on port `8000`. You can change the port mapping in the `docker-compose.yml` file if you want to run the server on a different port
 
-### Features
+## Features
 
 Once the server is running, you can access the following features,
 
@@ -72,7 +72,7 @@ Once the server is running, you can access the following features,
   - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
   - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
 
-#### Future Work
+### Future Work
 
 - Harden the filename parameters checks to avoid directory traversal attacks by asserting that the filename is within the base directory.
 - CORS Support
