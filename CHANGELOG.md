@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0](https://github.com/shinybrar/fetchi/compare/v0.3.0...v0.4.0) (2024-04-01)
+
+
+### Features
+
+* **integrity-check:** added a cli cmd fetchi-md5check to verify the integrity of the data.csv downloaded from the server ([b180fa5](https://github.com/shinybrar/fetchi/commit/b180fa580c0a85c987e5ec84ede40daac39ca23a))
+
+
+### Documentation
+
+* **readme:** added a toc ([22981d2](https://github.com/shinybrar/fetchi/commit/22981d20079dd2ee844c0a1fcfdb9d0e351d88b9))
+* **readme:** added screenshots ([2678995](https://github.com/shinybrar/fetchi/commit/2678995bcfc78b77acf0cfca9775d9283dddffeb))
+* **readme:** small fixes ([01f8002](https://github.com/shinybrar/fetchi/commit/01f8002db060bde261c4ef3a7ed384577cc3a9ff))
+
 ## [0.3.0](https://github.com/shinybrar/fetchi/compare/v0.2.0...v0.3.0) (2024-03-31)
 
 
