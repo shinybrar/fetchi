@@ -4,6 +4,20 @@
 
 Fetchi is a simple and lightweight HTTP Web Server written in Python to serve static files.
 
+- [Fetchi](#fetchi)
+  - [Installation](#installation)
+    - [From `zip` file](#from-zip-file)
+    - [From `git` repository](#from-git-repository)
+    - [Install the package](#install-the-package)
+  - [Starting the Server](#starting-the-server)
+    - [Command Line Interface](#command-line-interface)
+    - [Docker Compose](#docker-compose)
+  - [Detailed Explanations](#detailed-explanations)
+    - [Technologies Used](#technologies-used)
+    - [Future Work](#future-work)
+  - [Developer Setup](#developer-setup)
+  - [Testing Deployed Server](#testing-deployed-server)
+
 ## Installation
 
 **Note:** Fetchi requires Python 3.9+ to run. Make sure you have the correct version of Python installed on your system.
