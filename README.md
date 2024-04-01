@@ -70,7 +70,13 @@ The server also exposes a `/ping` endpoint that returns a `200 OK` status code t
 
 The server provides directory listing of all files in the `./fetchi/static/` directory. The directory listing is accessible at the `/static/` endpoint and provides a simple HTML page with links to the files in the directory.
 
+![image](https://github.com/shinybrar/fetchi/assets/4196481/c916f109-85a4-4d18-89e6-7ba078e86497)
+
+
 The server also provides OpenAPI and Swagger documentation for the HTTP endpoints. The OpenAPI documentation is accessible at the `/docs` endpoint, and the Swagger documentation is accessible at the `/docs/swagger` endpoint.
+
+![image](https://github.com/shinybrar/fetchi/assets/4196481/397b8413-7d7b-4449-929e-621a3b2760ec)
+
 
 Once the server is running, you can access the following all the endpoints using the following URLs (assuming the server is running on `http://0.0.0.0:8000`):
 
