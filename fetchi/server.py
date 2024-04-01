@@ -67,7 +67,10 @@ async def fetch(request: Request, filename: str) -> HTTPResponse:  # type: ignor
         if not (filepath.stat().st_mode & stat.S_IRUSR):
             return json({"error": "file not readable"}, status=403)
         # Serve the static file
-        return await file(filepath)
+        return await file(
+            location=filepath,
+            filename=filename,
+        )
     except Exception as error:
         logger.error(f"unknown server error: {error}")
         return json({"error": f"{str(error)}"}, status=500)

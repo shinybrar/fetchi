@@ -9,6 +9,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 sanic = {version = "^23.12.1", extras = ["ext"]}
+rich = "^13.7.1"
+requests = "^2.31.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -16,6 +18,9 @@ pre-commit = "^3.7.0"
 pytest = "^8.1.1"
 sanic-testing = "^23.12.0"
 pytest-asyncio = "^0.23.6"
+
+[tool.poetry.scripts]
+fetchi-md5check = "fetchi.scripts.datacheck:perform"
 
 [build-system]
 requires = ["poetry-core"]

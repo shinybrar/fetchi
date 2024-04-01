@@ -10,11 +10,11 @@ Fetchi is a simple and lightweight HTTP Web Server written in Python to serve st
 
 ### From `zip` file
 
-Download the `fetchi.zip` file from the [latest release](https://github.com/shinybrar/fetchi/releases). Extract the contents of the zip file and run the following command to install the package.
+Download the `zipfile` file from the [latest releases](https://github.com/shinybrar/fetchi/releases). Extract the contents of the zip file and run the following command to install the package.
 
 ```bash
 # Assuming MacOS or Linux Unzip the contents of the zip file
-$ unzip fetchi.zip
+$ unzip vX.X.X.zip
 ```
 
 ### From `git` repository
@@ -60,9 +60,19 @@ docker compose up
 
 This will build the docker and start the server on port `8000`. You can change the port mapping in the `docker-compose.yml` file if you want to run the server on a different port
 
-## Features
+## Detailed Explanations
 
-Once the server is running, you can access the following features,
+This codebase uses the Python `Sanic` framework to create a simple HTTP server that serves static files. The server is asynchronous and can be scaled very easily by running multiple workers to handle the incoming requests concurrently by appending a `--workers 4` flag to the `sanic` command. The server by default provides support for HTTP/1.1 protocol defined in RFC 9110, with features such as content negotiation, disposition, range and cache control for files. Though, in this implementation, we have not implemented caching and compression, but it can be easily added to the server.
+
+By default, all files under the `./fetchi/static/` directory are served by the server. The server exposes a single endpoint `/v1/fetch/<filename>` that allows users to download the contents of the file specified by the `<filename>` parameter. If the file is not found, the server returns a `404 Not Found` error, and if the file is found, but is not readable, the server returns a `403 Forbidden` error. Finally if the file is found and is readable, the server returns the contents of the file with a `200 OK` status code.
+
+The server also exposes a `/ping` endpoint that returns a `200 OK` status code to indicate that the server is running. Additionally, the server also exposes a `/__health__` endpoint that returns a `200 OK` status code with a JSON response to indicate that the server is healthy.
+
+The server provides directory listing of all files in the `./fetchi/static/` directory. The directory listing is accessible at the `/static/` endpoint and provides a simple HTML page with links to the files in the directory.
+
+The server also provides OpenAPI and Swagger documentation for the HTTP endpoints. The OpenAPI documentation is accessible at the `/docs` endpoint, and the Swagger documentation is accessible at the `/docs/swagger` endpoint.
+
+Once the server is running, you can access the following all the endpoints using the following URLs (assuming the server is running on `http://0.0.0.0:8000`):
 
 - [x] [Download the contents of `data.csv`](http://0.0.0.0:8000/v1/fetch/data.csv)
 - [x] [Directory Listing](http://0.0.0.0:8000/static/)
@@ -72,18 +82,25 @@ Once the server is running, you can access the following features,
   - [x] [OpenAPI Documentation](http://0.0.0.0:8000/docs)
   - [x] [Swagger Documentation](http://0.0.0.0:8000/docs/swagger)
 
+### Technologies Used
+
+- [Sanic](https://sanicframework.org/) - Sanic is a Python 3.8+ web server and web framework. It allows the usage of the async/await syntax which makes it non-blocking and speedy.
+- [Poetry](https://python-poetry.org/) - Poetry is a tool for dependency management and packaging in Python. It manages project dependencies as well virtual environments for development and testing.
+- Docker (Dockerfile + compose.yml) - This repository uses Docker to containerize the server and run it in a containerized environment. The `Dockerfile` contains the instructions to build the server image, and the `compose.yml` file contains the configuration to run the server in a containerized environment.
+- Pre Commit Hooks- A framework for managing and maintaining multi-language pre-commit hooks. This repository uses `black`, `isort`, `flake8`, `mypy`, `committizen`, etc. as pre-commit hooks to ensure code quality and consistency.
+- GitHub Actions Support - This repository uses GitHub Actions for Continuous Integration and Continuous Deployment. There are two workflows defined in the `.github/workflows` directory: `deployment.yml` and `integration.yml`. The `deployment.yml` workflow is triggered when a new commit is pushed to the `main` branch and it checks previous commit messages to determine the version bump. The `integration.yml` workflow is triggered when either a pull request is opened or updated against the `main` branch or when a new commit is pushed to the `main` branch. It runs the tests included with this repository to ensure the code quality and consistency.
+
 ### Future Work
 
 - Harden the filename parameters checks to avoid directory traversal attacks by asserting that the filename is within the base directory.
 - CORS Support
 - HTTPS/TLS Support
-- Implement fast Caching & Cache-Control
+- Implement Cache-Control
 - Implement GZIP Compression
 - Implement Authentication, e.g. Basic Auth, JWT, OAuth2 etc.
-- Proxy Support
 - Add more tests for the server
 
-### Developer Setup
+## Developer Setup
 
 In order to setup the development environment, you need to have [Python 3.9+](https://www.python.org/downloads/release/python-3110/) or higher installed on your system. Additionally, this project uses [Poetry](https://python-poetry.org/) for dependency management, packaging, publishing and management of local development environments. To install `poetry` you find the instructions [here](https://python-poetry.org/docs/#installation).
 
@@ -121,4 +138,29 @@ md5 data.csv
 MD5 (data.csv) = 66e1f14667b77ef1b358bb8dedbd3990
 ```
 
-If the contents of the checksum are same, the server is working as expected.
+Additionally, there is also a commandline tools included with this repository that allows you to verify the contents of the file served by the server. You can run the following command to verify the contents of the file:
+
+```bash
+fetchi-md5check
+```
+
+This script will ping the server, then verify that its healthy and finally download the `data.csv` file and compare its md5checksum with the expected checksum of the files in the `./fetchi/static/data.csv` directory. Upon running the script, you should see the following output:
+
+```bash
+$ fetchi-md5check
+[20:58:25] INFO     Starting the data integrity check...                                                                                                    datacheck.py:29
+           INFO     Pinging the server...                                                                                                                   datacheck.py:31
+           INFO     Recv: {'message': 'pong'}                                                                                                               datacheck.py:34
+           INFO     Server is up, ✅                                                                                                                        datacheck.py:35
+           INFO     Checking the server health...                                                                                                           datacheck.py:37
+           INFO     Recv: {'Sanic-Main': {'pid': 5145}, 'Sanic-Server-0-0': {'server': True, 'state': 'ACKED', 'pid': 5152, 'start_at':                     datacheck.py:40
+                    '2024-04-01T00:45:48.234100+00:00', 'starts': 1, 'serving': True}, 'Sanic-HealthMonitor-0': {'server': False, 'state': 'STARTED',
+                    'pid': 5153, 'start_at': '2024-04-01T00:45:48.236527+00:00', 'starts': 1}}
+           INFO     Server is healthy, ✅                                                                                                                   datacheck.py:41
+           INFO     Fetching data.csv file...                                                                                                               datacheck.py:43
+           INFO     data.csv file recieved, ✅                                                                                                              datacheck.py:46
+           INFO     Calculating md5 checksum...                                                                                                             datacheck.py:50
+           INFO     Checksum: 66e1f14667b77ef1b358bb8dedbd3990                                                                                              datacheck.py:52
+           INFO     Checksum matched, ✅                                                                                                                    datacheck.py:55
+           INFO     Data integrity check verified.
+```
